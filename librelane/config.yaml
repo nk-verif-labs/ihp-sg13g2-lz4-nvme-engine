@@ -1,7 +1,8 @@
-DESIGN_NAME: ready_valid_pipe
+DESIGN_NAME: lz4_nvme_top
 VERILOG_FILES:
-  - dir::../src/ready_valid_pipe.v
+  - dir::../src/crc32c_32b.v
+  - dir::../src/lz4_nvme_top.v
 CLOCK_PORT: clk
 CLOCK_PERIOD: 20.0
-FP_CORE_UTIL: 35
-PL_TARGET_DENSITY_PCT: 45
+FP_CORE_UTIL: 45
+PL_TARGET_DENSITY_PCT: 55
