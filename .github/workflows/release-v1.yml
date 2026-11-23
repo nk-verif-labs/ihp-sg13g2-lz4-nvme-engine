@@ -1,0 +1,20 @@
+name: Scheduled v1.0.0 Launch Release
+on:
+  schedule:
+    - cron: '0 4 24 11 *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create v1.0.0 release if missing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ! gh release view v1.0.0 >/dev/null 2>&1; then
+            gh release create v1.0.0 --title "v1.0.0 — IHP SG13G2 Hardware LZ4 + CRC-32C Engine" \
+              --notes "Initial v1.0.0 release: 32-bit AXI4-Stream hardware LZ4 rolling-hash match engine + single-cycle Castagnoli CRC-32C (0x82F63B78) hardened on IHP SG13G2 via LibreLane (RTL & GL Cocotb CI PASS)."
+          fi
